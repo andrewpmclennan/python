@@ -1,7 +1,8 @@
 # Echo client program
 import socket
-from wakeonlan import wol
+import wakeonlan as wol
 
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 def socket_connection():
     HOST = ''    # The remote host
     PORT = 50007              # The same port as used by the server
@@ -9,8 +10,16 @@ def socket_connection():
     s.connect((HOST, PORT))
     s.send('Hello, world'.encode())
     data = s.recv(1024)
-    s.close()
+
     print('Received', repr(data.decode()))
+
+def open_socket():
+    HOST = ''    # The remote host
+    PORT = 50007              # The same port as used by the server
+    s.connect((HOST, PORT))
+
+def close_socket():
+    s.close()
 
 # Method to do a magic packet send:
 def send_magic_packets():
@@ -19,5 +28,6 @@ def send_magic_packets():
 
 
 #send_magic_packets()
-
+open_socket()
+close_socket()
 
